@@ -47,6 +47,9 @@ public class AttendanceController {
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 
+		// Task.25 過去に未入力が無いかチェック
+		model.addAttribute("hasUnfilledAttendance", studentAttendanceService.hasUnfilledAttendance());
+		
 		return "attendance/detail";
 	}
 

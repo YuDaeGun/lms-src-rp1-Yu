@@ -1,6 +1,7 @@
 package jp.co.sss.lms.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -334,4 +335,11 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 
+	// Task.25
+	public boolean hasUnfilledAttendance() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String trainingDate = sdf.format(new Date());
+		return tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), Constants.DB_FLG_FALSE, trainingDate) > 0;
+	}
+	
 }
