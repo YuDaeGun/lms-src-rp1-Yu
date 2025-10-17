@@ -147,4 +147,36 @@ public class AttendanceUtil {
 		return false;
 	}
 
+	// Task.26 時間（"HH:mm"形式）から「時」を取得
+	public String extractHour(String time) {
+	    if (time == null || !time.contains(":")) return "";
+	    return time.split(":")[0];
+	}
+	// Task.26 時間（"HH:mm"形式）から「分」を取得
+	public String extractMinute(String time) {
+	    if (time == null || !time.contains(":")) return "";
+	    return time.split(":")[1];
+	}
+	
+	// Task.26  時間マップ（0～23）を取得
+	public LinkedHashMap<String, String> setHourMap() {
+	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+	    map.put(null, "");
+	    for (int i = 0; i < 24; i++) {
+	        String val = String.format("%02d", i);
+	        map.put(val, val);
+	    }
+	    return map;
+	}
+
+	// Task.26 分マップ（00～59）を取得
+	public LinkedHashMap<String, String> setMinuteMap() {
+	    LinkedHashMap<String, String> map = new LinkedHashMap<>();
+	    map.put(null, "");
+	    for (int i = 0; i < 60; i++) {
+	        String val = String.format("%02d", i);
+	        map.put(val, val);
+	    }
+	    return map;
+	}
 }
